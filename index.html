@@ -1,1 +1,1327 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CHABAKAT COM — Solutions Télécommunications Clés en Main · Algérie</title>
+<meta name="description" content="EURL CHABAKAT COM, entreprise spécialisée dans la réalisation et l'intégration des systèmes de télécommunication en Algérie depuis 2012.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Barlow',sans-serif;background:#0A1628;color:#fff;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img,svg{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
 
+:root{
+  --navy:#0A1628;
+  --navy-mid:#0E2040;
+  --navy-light:#162B52;
+  --navy-deep:#06101E;
+  --orange:#F05A1A;
+  --orange-light:#FF7A3D;
+  --orange-pale:rgba(240,90,26,0.12);
+  --orange-border:rgba(240,90,26,0.3);
+  --w:#fff;
+  --w90:rgba(255,255,255,0.9);
+  --w60:rgba(255,255,255,0.6);
+  --w30:rgba(255,255,255,0.3);
+  --w08:rgba(255,255,255,0.08);
+  --w04:rgba(255,255,255,0.04);
+  --b06:rgba(255,255,255,0.06);
+}
+
+/* ═══════════════════ NAV ═══════════════════ */
+#nav{
+  position:fixed;top:0;left:0;right:0;z-index:500;
+  height:68px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 clamp(16px,4vw,60px);
+  background:rgba(10,22,40,0.72);
+  backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);
+  border-bottom:1px solid var(--b06);
+  transition:background .3s;
+}
+#nav.scrolled{background:rgba(10,22,40,0.96)}
+
+.nav-logo{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.logo-mark{width:34px;height:34px;flex-shrink:0}
+.logo-text{display:flex;flex-direction:column;line-height:1}
+.logo-name{font-family:'Bebas Neue',sans-serif;font-size:clamp(16px,2.2vw,21px);letter-spacing:2px;color:var(--w)}
+.logo-tagline{font-family:'Barlow Condensed',sans-serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--orange);margin-top:2px}
+
+.nav-links{display:flex;align-items:center;gap:clamp(18px,2.8vw,38px);list-style:none}
+.nav-links a{
+  font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:2.5px;
+  text-transform:uppercase;color:var(--w60);transition:color .25s;position:relative
+}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1.5px;background:var(--orange);transition:width .3s}
+.nav-links a:hover,.nav-links a.active{color:var(--w)}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%}
+
+.nav-btn{
+  font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:2.5px;
+  text-transform:uppercase;color:var(--w);background:var(--orange);
+  padding:9px 22px;border:none;cursor:pointer;
+  clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);
+  transition:background .25s,transform .2s;white-space:nowrap;flex-shrink:0
+}
+.nav-btn:hover{background:var(--orange-light);transform:translateY(-1px)}
+
+/* Hamburger */
+.nav-burger{
+  display:none;flex-direction:column;justify-content:center;gap:5px;
+  width:36px;height:36px;background:none;border:none;cursor:pointer;padding:4px;flex-shrink:0
+}
+.nav-burger span{display:block;width:100%;height:2px;background:var(--w);border-radius:2px;transition:transform .3s,opacity .3s;transform-origin:center}
+.nav-burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-burger.open span:nth-child(2){opacity:0}
+.nav-burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* Drawer */
+.nav-drawer{
+  display:none;position:fixed;top:68px;left:0;right:0;
+  background:rgba(8,18,36,0.98);backdrop-filter:blur(22px);
+  flex-direction:column;padding:20px clamp(16px,5vw,40px) 28px;
+  border-bottom:1px solid var(--b06);z-index:490;
+  opacity:0;transform:translateY(-6px);
+  transition:opacity .25s,transform .25s;pointer-events:none
+}
+.nav-drawer.open{display:flex;opacity:1;transform:translateY(0);pointer-events:all}
+.nav-drawer a{
+  font-family:'Barlow Condensed',sans-serif;font-size:17px;letter-spacing:2px;
+  text-transform:uppercase;color:var(--w60);padding:13px 0;
+  border-bottom:1px solid var(--b06);transition:color .2s
+}
+.nav-drawer a:last-of-type{border:none}
+.nav-drawer a:hover{color:var(--w)}
+.drawer-cta{
+  margin-top:18px;display:block;background:var(--orange);color:var(--w);
+  text-align:center;padding:13px 24px;
+  font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:2.5px;text-transform:uppercase;
+  clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%)
+}
+
+/* ═══════════════════ HERO ═══════════════════ */
+#hero{
+  position:relative;width:100%;height:100svh;min-height:580px;
+  display:flex;align-items:center;overflow:hidden
+}
+.sky{position:absolute;inset:0;background:linear-gradient(155deg,#0f2240 0%,#1a4a8a 30%,#2a6aaa 55%,#4a98d2 80%,#72b8e0 100%);z-index:0}
+.sky-svg{position:absolute;inset:0;z-index:1;overflow:hidden}
+.sky-svg svg{position:absolute;inset:0;width:100%;height:100%}
+.hero-veil{
+  position:absolute;inset:0;z-index:3;
+  background:linear-gradient(100deg,rgba(10,22,40,.97) 0%,rgba(10,22,40,.88) 38%,rgba(10,22,40,.42) 62%,rgba(10,22,40,.04) 100%)
+}
+.hero-content{
+  position:relative;z-index:10;
+  padding:80px clamp(16px,5vw,60px) 140px;
+  max-width:min(640px,92vw);
+  animation:fadeUp 1s ease both
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+
+.eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:18px;animation:fadeUp 1s .1s ease both}
+.eyebrow-bar{width:36px;height:2px;background:var(--orange);flex-shrink:0}
+.eyebrow-txt{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--orange);font-weight:600}
+
+.hero-h1{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(42px,7.2vw,86px);
+  line-height:.93;letter-spacing:1px;color:var(--w);
+  margin-bottom:20px;animation:fadeUp 1s .18s ease both
+}
+.hero-h1 em{color:var(--orange);font-style:normal}
+
+.hero-p{
+  font-size:clamp(14px,1.7vw,16px);font-weight:300;line-height:1.78;
+  color:var(--w60);max-width:430px;margin-bottom:34px;
+  animation:fadeUp 1s .28s ease both
+}
+.hero-btns{display:flex;align-items:center;gap:14px;flex-wrap:wrap;animation:fadeUp 1s .38s ease both}
+
+.btn{
+  display:inline-flex;align-items:center;gap:9px;
+  font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:2.5px;
+  text-transform:uppercase;font-weight:600;cursor:pointer;border:none;
+  transition:all .25s;white-space:nowrap;
+  clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%)
+}
+.btn-orange{color:var(--w);background:var(--orange);padding:13px 28px}
+.btn-orange:hover{background:var(--orange-light);transform:translateY(-2px);box-shadow:0 10px 30px rgba(240,90,26,.4)}
+.btn-outline{color:var(--w60);background:transparent;border:1px solid var(--w30);padding:12px 24px}
+.btn-outline:hover{color:var(--w);border-color:var(--w60)}
+.btn svg{width:15px;height:15px;flex-shrink:0;transition:transform .25s}
+.btn:hover svg{transform:translateX(3px)}
+
+/* Stats bar */
+.hero-stats{
+  position:absolute;bottom:0;left:0;right:0;z-index:10;
+  display:flex;flex-wrap:wrap;
+  background:rgba(10,22,40,.82);backdrop-filter:blur(20px);
+  border-top:1px solid var(--b06);
+  animation:fadeUp 1s .55s ease both
+}
+.stat{
+  flex:1 1 110px;padding:clamp(12px,2vw,20px) clamp(14px,2.5vw,38px);
+  border-right:1px solid var(--b06);display:flex;flex-direction:column;gap:3px
+}
+.stat:last-child{border-right:none}
+.stat-n{font-family:'Bebas Neue',sans-serif;font-size:clamp(24px,3.5vw,34px);color:var(--orange);line-height:1}
+.stat-l{font-family:'Barlow Condensed',sans-serif;font-size:clamp(9px,1.1vw,11px);letter-spacing:2px;text-transform:uppercase;color:var(--w60)}
+
+/* ═══════════════════ SECTION UTILS ═══════════════════ */
+section{width:100%}
+.container{max-width:1280px;margin:0 auto;padding:0 clamp(16px,5vw,60px)}
+.section-pad{padding:clamp(60px,8vw,100px) clamp(16px,5vw,60px)}
+
+.sec-label{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.sec-dot{width:7px;height:7px;background:var(--orange);transform:rotate(45deg);flex-shrink:0}
+.sec-label-txt{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:3.5px;text-transform:uppercase;color:var(--orange);font-weight:600}
+.sec-h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(30px,4.5vw,54px);letter-spacing:1px;line-height:.95;color:var(--w)}
+.sec-p{font-size:clamp(14px,1.5vw,15px);font-weight:300;line-height:1.82;color:var(--w60)}
+
+.divider{width:100%;height:1px;background:var(--w04)}
+
+/* fade-up on scroll */
+.fu{opacity:0;transform:translateY(32px);transition:opacity .7s ease,transform .7s ease}
+.fu.vis{opacity:1;transform:none}
+.fu-d1{transition-delay:.1s}.fu-d2{transition-delay:.2s}.fu-d3{transition-delay:.3s}.fu-d4{transition-delay:.4s}
+
+/* ═══════════════════ ABOUT ═══════════════════ */
+#about{background:var(--navy-mid)}
+.about-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:clamp(36px,6vw,80px);align-items:center
+}
+.about-frame{position:relative}
+.about-inner{
+  width:100%;aspect-ratio:4/3;
+  background:linear-gradient(135deg,#0d2244 0%,#1a3a6b 55%,#0f2f55 100%);
+  border:1px solid var(--b06);position:relative;overflow:hidden;
+  display:flex;align-items:center;justify-content:center
+}
+.corner-mark{position:absolute;width:22px;height:22px;border-color:var(--orange);border-style:solid;border-width:0}
+.cm-tl{top:-1px;left:-1px;border-top-width:2px;border-left-width:2px}
+.cm-tr{top:-1px;right:-1px;border-top-width:2px;border-right-width:2px}
+.cm-bl{bottom:-1px;left:-1px;border-bottom-width:2px;border-left-width:2px}
+.cm-br{bottom:-1px;right:-1px;border-bottom-width:2px;border-right-width:2px}
+
+.about-badge{
+  position:absolute;bottom:-16px;right:-16px;
+  background:var(--orange);padding:18px 22px;text-align:center
+}
+.badge-n{font-family:'Bebas Neue',sans-serif;font-size:clamp(30px,4vw,42px);color:var(--w);line-height:1;display:block}
+.badge-t{font-family:'Barlow Condensed',sans-serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.85);display:block;margin-top:2px}
+
+.about-text .sec-h2{margin-bottom:18px}
+.about-text .sec-p{margin-bottom:24px}
+.check-list{display:flex;flex-direction:column;gap:11px;margin-bottom:36px}
+.check-item{display:flex;align-items:flex-start;gap:12px;font-family:'Barlow Condensed',sans-serif;font-size:clamp(12px,1.4vw,14px);letter-spacing:.8px;text-transform:uppercase;color:var(--w90);line-height:1.4}
+.check-box{width:20px;height:20px;background:var(--orange-pale);border:1px solid var(--orange-border);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+
+/* ═══════════════════ SERVICES ═══════════════════ */
+#services{background:var(--navy)}
+.services-hd{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:clamp(36px,5vw,56px)}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--b06);border:1px solid var(--b06)}
+.svc{
+  background:var(--navy);padding:clamp(22px,3vw,36px) clamp(18px,2.5vw,30px);
+  position:relative;overflow:hidden;cursor:pointer;
+  transition:background .3s
+}
+.svc::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--orange);transform:scaleX(0);transform-origin:left;transition:transform .35s}
+.svc:hover{background:var(--navy-light)}
+.svc:hover::after{transform:scaleX(1)}
+.svc-num{position:absolute;top:18px;right:18px;font-family:'Bebas Neue',sans-serif;font-size:44px;color:rgba(255,255,255,.04);line-height:1;pointer-events:none}
+.svc-icon{width:42px;height:42px;color:var(--orange);margin-bottom:18px}
+.svc-name{font-family:'Barlow Condensed',sans-serif;font-size:clamp(14px,1.7vw,18px);font-weight:600;text-transform:uppercase;color:var(--w);margin-bottom:10px;letter-spacing:.5px}
+.svc-desc{font-size:clamp(12px,1.3vw,14px);font-weight:300;line-height:1.65;color:var(--w60)}
+
+/* ═══════════════════ VALUES + VISION ═══════════════════ */
+#values{background:var(--navy-mid)}
+.vv-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,56px)}
+.vv-card{
+  background:var(--navy);border:1px solid var(--b06);
+  padding:clamp(28px,3.5vw,44px);position:relative;overflow:hidden
+}
+.vv-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--orange)}
+.vv-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(26px,3.5vw,40px);color:var(--orange);margin-bottom:24px;letter-spacing:1px}
+.vv-list{display:flex;flex-direction:column;gap:14px}
+.vv-item{display:flex;align-items:flex-start;gap:12px;font-size:clamp(13px,1.5vw,15px);font-weight:300;line-height:1.65;color:var(--w60)}
+.vv-bullet{width:6px;height:6px;background:var(--orange);transform:rotate(45deg);flex-shrink:0;margin-top:7px}
+
+/* ═══════════════════ PROJECTS ═══════════════════ */
+#projects{background:var(--navy)}
+.proj-tabs{display:flex;gap:0;margin-bottom:clamp(28px,4vw,44px);border-bottom:1px solid var(--b06)}
+.proj-tab{
+  font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:2.5px;text-transform:uppercase;
+  color:var(--w60);padding:12px 24px;cursor:pointer;background:none;border:none;
+  border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .25s
+}
+.proj-tab.active{color:var(--orange);border-bottom-color:var(--orange)}
+.proj-tab:hover{color:var(--w)}
+
+.proj-table{width:100%;border-collapse:collapse}
+.proj-table th{
+  font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--orange);padding:12px 20px;text-align:left;border-bottom:1px solid var(--b06);
+  background:var(--navy-mid)
+}
+.proj-table td{
+  padding:16px 20px;font-size:14px;font-weight:300;color:var(--w60);
+  border-bottom:1px solid var(--w04);vertical-align:top
+}
+.proj-table tr:hover td{background:rgba(255,255,255,.02);color:var(--w90)}
+.proj-table td:first-child{
+  font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--orange);
+  width:56px;text-align:center
+}
+.proj-partner{
+  display:inline-block;font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:1.5px;
+  text-transform:uppercase;padding:3px 10px;border:1px solid var(--orange-border);
+  color:var(--orange);margin-bottom:4px
+}
+.proj-name{font-size:14px;font-weight:400;color:var(--w90);margin-bottom:4px}
+.proj-region{font-size:13px;font-weight:300;color:var(--w60)}
+
+/* Active/inactive project panels */
+.proj-panel{display:none}
+.proj-panel.active{display:block}
+
+/* ═══════════════════ TEAM / RESOURCES ═══════════════════ */
+#team{background:var(--navy-mid)}
+.team-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,52px)}
+.res-block{background:var(--navy);border:1px solid var(--b06);padding:clamp(24px,3vw,38px)}
+.res-title{
+  font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--orange);margin-bottom:24px;display:flex;align-items:center;gap:10px
+}
+.res-title::after{content:'';flex:1;height:1px;background:var(--b06)}
+.res-list{display:flex;flex-direction:column;gap:12px}
+.res-item{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:10px 14px;background:var(--navy-mid);
+  border-left:2px solid var(--orange)
+}
+.res-role{font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:1px;text-transform:uppercase;color:var(--w90)}
+.res-count{font-family:'Bebas Neue',sans-serif;font-size:24px;color:var(--orange);line-height:1}
+
+/* ═══════════════════ CONTACT ═══════════════════ */
+#contact{background:var(--navy-deep);position:relative;overflow:hidden}
+#contact::before{
+  content:'CONTACT';
+  position:absolute;font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(80px,15vw,200px);color:rgba(255,255,255,.02);
+  right:-20px;top:50%;transform:translateY(-50%);
+  pointer-events:none;letter-spacing:4px;white-space:nowrap
+}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,5vw,72px);align-items:start}
+.contact-info .sec-h2{margin-bottom:20px}
+.contact-info .sec-p{margin-bottom:36px}
+
+.contact-cards{display:flex;flex-direction:column;gap:16px;margin-bottom:36px}
+.ccard{
+  display:flex;align-items:center;gap:16px;
+  padding:18px 20px;background:rgba(255,255,255,.03);border:1px solid var(--b06);
+  border-left:2px solid var(--orange)
+}
+.ccard-icon{width:38px;height:38px;background:var(--orange-pale);border:1px solid var(--orange-border);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ccard-icon svg{width:18px;height:18px;color:var(--orange)}
+.ccard-label{font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--orange);margin-bottom:3px}
+.ccard-val{font-size:14px;font-weight:300;color:var(--w90)}
+
+.contact-persons{display:flex;flex-direction:column;gap:16px}
+.person{padding:22px 24px;background:rgba(255,255,255,.03);border:1px solid var(--b06)}
+.person-name{font-family:'Barlow Condensed',sans-serif;font-size:clamp(15px,1.8vw,18px);font-weight:600;text-transform:uppercase;color:var(--w);letter-spacing:.5px;margin-bottom:4px}
+.person-role{font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--orange);margin-bottom:14px}
+.person-contacts{display:flex;flex-direction:column;gap:6px}
+.person-contacts a{font-size:13px;font-weight:300;color:var(--w60);transition:color .2s;display:flex;align-items:center;gap:8px}
+.person-contacts a:hover{color:var(--orange)}
+.person-contacts a svg{width:14px;height:14px;flex-shrink:0;opacity:.5}
+
+/* Contact form */
+.cform{display:flex;flex-direction:column;gap:16px}
+.cform-group{display:flex;flex-direction:column;gap:6px}
+.cform-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.cform label{font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--orange)}
+.cform input,.cform textarea,.cform select{
+  width:100%;background:rgba(255,255,255,.04);border:1px solid var(--b06);
+  color:var(--w);font-family:'Barlow',sans-serif;font-size:14px;font-weight:300;
+  padding:12px 16px;outline:none;
+  transition:border-color .25s,background .25s
+}
+.cform input::placeholder,.cform textarea::placeholder{color:rgba(255,255,255,.25);font-size:13px}
+.cform input:focus,.cform textarea:focus,.cform select:focus{border-color:rgba(240,90,26,.5);background:rgba(255,255,255,.06)}
+.cform textarea{resize:vertical;min-height:120px}
+.cform select{appearance:none;cursor:pointer}
+.cform option{background:#0E2040;color:#fff}
+
+/* ═══════════════════ FOOTER ═══════════════════ */
+footer{background:#040c18;padding:clamp(40px,5vw,60px) clamp(16px,5vw,60px) clamp(20px,3vw,32px);border-top:1px solid var(--w04)}
+.footer-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:clamp(20px,4vw,44px);margin-bottom:clamp(30px,4vw,48px)}
+.footer-brand p{font-size:13px;font-weight:300;line-height:1.72;color:var(--w60);margin-top:14px;max-width:250px}
+.footer-col h5{font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--orange);margin-bottom:18px}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.footer-col ul a{font-size:13px;font-weight:300;color:var(--w60);transition:color .2s}
+.footer-col ul a:hover{color:var(--w)}
+.footer-bottom{border-top:1px solid var(--w04);padding-top:22px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.footer-copy{font-size:12px;color:rgba(255,255,255,.28);font-weight:300}
+.footer-legal{display:flex;gap:20px;flex-wrap:wrap}
+.footer-legal a{font-size:12px;color:rgba(255,255,255,.28);transition:color .2s}
+.footer-legal a:hover{color:var(--w60)}
+
+/* ═══════════════════ RESPONSIVE ═══════════════════ */
+@media(max-width:1024px){
+  .services-grid{grid-template-columns:repeat(2,1fr)}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .footer-brand{grid-column:1/-1}
+}
+@media(max-width:768px){
+  .nav-links,.nav-btn{display:none}
+  .nav-burger{display:flex}
+  .hero-veil{background:linear-gradient(175deg,rgba(10,22,40,.94) 0%,rgba(10,22,40,.82) 60%,rgba(10,22,40,.65) 100%)}
+  .hero-content{padding-bottom:150px}
+  .about-grid{grid-template-columns:1fr}
+  .about-frame{order:-1}
+  .about-badge{bottom:-12px;right:-12px}
+  .vv-grid{grid-template-columns:1fr}
+  .team-grid{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr}
+  .cform-row{grid-template-columns:1fr}
+  .stat{flex:1 1 45%;border-right:none;border-bottom:1px solid var(--b06)}
+  .stat:nth-child(odd){border-right:1px solid var(--b06)}
+  .stat:nth-last-child(-n+2){border-bottom:none}
+}
+@media(max-width:480px){
+  #nav{height:60px}
+  .nav-drawer{top:60px}
+  .hero-btns{flex-direction:column;align-items:flex-start}
+  .btn{width:100%;justify-content:center}
+  .services-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr}
+  .proj-table td,.proj-table th{padding:10px 12px}
+  .proj-table td:first-child{display:none}
+  .about-badge{position:static;display:inline-block;margin-top:14px}
+}
+</style>
+</head>
+<body>
+<br><br>
+<!-- ════════════════ NAV ════════════════ -->
+<nav id="nav">
+  <a href="#hero" class="nav-logo">
+    <svg class="logo-mark" viewBox="0 0 34 34" fill="none">
+      <rect width="34" height="34" fill="rgba(240,90,26,.14)"/>
+      <path d="M17 25 L17 12" stroke="#F05A1A" stroke-width="1.6" stroke-linecap="round"/>
+      <path d="M12 15 L22 15" stroke="#F05A1A" stroke-width="1.6" stroke-linecap="round"/>
+      <path d="M9.5 12.5 L13 16" stroke="rgba(240,90,26,.6)" stroke-width="1.1" stroke-linecap="round"/>
+      <path d="M24.5 12.5 L21 16" stroke="rgba(240,90,26,.6)" stroke-width="1.1" stroke-linecap="round"/>
+      <path d="M7 10 L11.5 14.5" stroke="rgba(240,90,26,.3)" stroke-width="1" stroke-linecap="round"/>
+      <path d="M27 10 L22.5 14.5" stroke="rgba(240,90,26,.3)" stroke-width="1" stroke-linecap="round"/>
+      <path d="M14.5 25 L19.5 25 L18.2 31 L15.8 31 Z" fill="#F05A1A" opacity=".7"/>
+      <circle cx="17" cy="12" r="2" fill="#F05A1A"/>
+      <path d="M6 9 Q11.5 4.5 17 4.5 Q22.5 4.5 28 9" stroke="#F05A1A" stroke-width=".9" stroke-linecap="round" fill="none" opacity=".22"/>
+    </svg>
+    <div class="logo-text">
+      <span class="logo-name">CHABAKAT COM</span>
+      <span class="logo-tagline">Télécommunications · Algérie</span>
+    </div>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="#hero" class="active">Accueil</a></li>
+    <li><a href="#about">À Propos</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#projects">Projets</a></li>
+    <li><a href="#team">Équipe</a></li>
+  </ul>
+
+  <a href="#contact" class="nav-btn">Contact</a>
+
+  <button class="nav-burger" id="burger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="nav-drawer" id="drawer" aria-hidden="true">
+  <a href="#hero">Accueil</a>
+  <a href="#about">À Propos</a>
+  <a href="#services">Services</a>
+  <a href="#projects">Projets</a>
+  <a href="#team">Équipe</a>
+  <a href="#contact" class="drawer-cta">Nous Contacter</a>
+</div>
+
+<!-- ════════════════ HERO ════════════════ -->
+<section id="hero">
+  <div class="sky"></div>
+  <div class="sky-svg">
+    <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="sg" cx="68%" cy="18%" r="32%">
+          <stop offset="0%" stop-color="rgba(255,240,190,.28)"/>
+          <stop offset="100%" stop-color="transparent"/>
+        </radialGradient>
+        <filter id="b4"><feGaussianBlur stdDeviation="4"/></filter>
+        <filter id="b8"><feGaussianBlur stdDeviation="8"/></filter>
+      </defs>
+      <!-- Sun -->
+      <ellipse cx="1020" cy="140" rx="310" ry="260" fill="url(#sg)"/>
+      <ellipse cx="1020" cy="140" rx="90" ry="80" fill="rgba(255,245,210,.1)"/>
+      <!-- Horizon -->
+      <rect x="0" y="570" width="1440" height="70" fill="rgba(110,165,215,.12)" filter="url(#b8)"/>
+      <rect x="0" y="625" width="1440" height="275" fill="rgba(10,25,52,.78)"/>
+      <!-- Ground -->
+      <path d="M0 685 Q220 645 400 665 Q580 685 730 655 Q910 625 1110 660 Q1290 688 1440 668 L1440 900 L0 900Z" fill="rgba(7,18,40,.92)"/>
+      <path d="M0 718 Q190 695 370 705 Q610 718 810 698 Q1010 678 1210 704 Q1350 718 1440 708 L1440 900 L0 900Z" fill="rgba(5,14,32,.96)"/>
+      <!-- TOWER -->
+      <g transform="translate(870,35)">
+        <rect x="-52" y="812" width="104" height="11" rx="1" fill="#09172a"/>
+        <rect x="-62" y="821" width="124" height="5" fill="#0c1d36"/>
+        <path d="M-8 812 L-44 652 L-31 202 L-6 42" stroke="#193868" stroke-width="3.2" fill="none" stroke-linecap="round"/>
+        <path d="M8 812 L44 652 L31 202 L6 42" stroke="#193868" stroke-width="3.2" fill="none" stroke-linecap="round"/>
+        <path d="M0 812 L0 8" stroke="#142849" stroke-width="2" fill="none"/>
+        <!-- Lower bracing -->
+        <path d="M-44 652 L44 652" stroke="#193868" stroke-width="1.4" opacity=".8"/>
+        <path d="M-39 702 L39 702" stroke="#193868" stroke-width="1.4" opacity=".8"/>
+        <path d="M-46 757 L46 757" stroke="#193868" stroke-width="1.4" opacity=".8"/>
+        <path d="M-44 652 L39 702" stroke="#193868" stroke-width=".9" opacity=".5"/>
+        <path d="M44 652 L-39 702" stroke="#193868" stroke-width=".9" opacity=".5"/>
+        <path d="M-39 702 L46 757" stroke="#193868" stroke-width=".9" opacity=".5"/>
+        <path d="M39 702 L-46 757" stroke="#193868" stroke-width=".9" opacity=".5"/>
+        <!-- Mid bracing -->
+        <path d="M-31 202 L31 202" stroke="#193e6e" stroke-width="1.4" opacity=".9"/>
+        <path d="M-33 302 L33 302" stroke="#193e6e" stroke-width="1.4" opacity=".9"/>
+        <path d="M-37 402 L37 402" stroke="#193e6e" stroke-width="1.4" opacity=".9"/>
+        <path d="M-40 502 L40 502" stroke="#193868" stroke-width="1.4" opacity=".9"/>
+        <path d="M-42 582 L42 582" stroke="#193868" stroke-width="1.4" opacity=".9"/>
+        <path d="M-31 202 L33 302" stroke="#193e6e" stroke-width=".7" opacity=".4"/>
+        <path d="M31 202 L-33 302" stroke="#193e6e" stroke-width=".7" opacity=".4"/>
+        <path d="M-33 302 L37 402" stroke="#193e6e" stroke-width=".7" opacity=".4"/>
+        <path d="M33 302 L-37 402" stroke="#193e6e" stroke-width=".7" opacity=".4"/>
+        <path d="M-37 402 L40 502" stroke="#193868" stroke-width=".7" opacity=".4"/>
+        <path d="M37 402 L-40 502" stroke="#193868" stroke-width=".7" opacity=".4"/>
+        <path d="M-40 502 L42 582" stroke="#193868" stroke-width=".7" opacity=".4"/>
+        <path d="M40 502 L-42 582" stroke="#193868" stroke-width=".7" opacity=".4"/>
+        <path d="M-42 582 L44 652" stroke="#193868" stroke-width=".7" opacity=".4"/>
+        <path d="M42 582 L-44 652" stroke="#193868" stroke-width=".7" opacity=".4"/>
+        <!-- Upper -->
+        <path d="M-11 102 L11 102" stroke="#1f4374" stroke-width="1.4" opacity=".9"/>
+        <path d="M-15 142 L15 142" stroke="#1f4374" stroke-width="1.4" opacity=".9"/>
+        <path d="M-21 172 L21 172" stroke="#1c3e6c" stroke-width="1.4" opacity=".9"/>
+        <!-- Platforms -->
+        <rect x="-57" y="644" width="114" height="5" rx="1" fill="#1a3c6e"/>
+        <rect x="-50" y="640" width="10" height="8" fill="#142c54"/>
+        <rect x="40" y="640" width="10" height="8" fill="#142c54"/>
+        <rect x="-64" y="610" width="14" height="36" rx="1" fill="#1d4888" opacity=".9"/>
+        <rect x="50" y="610" width="14" height="36" rx="1" fill="#1d4888" opacity=".9"/>
+        <rect x="-67" y="607" width="20" height="4" rx="1" fill="#244b8a"/>
+        <rect x="47" y="607" width="20" height="4" rx="1" fill="#244b8a"/>
+        <rect x="-43" y="395" width="86" height="4" rx="1" fill="#1a3c6e"/>
+        <ellipse cx="-50" cy="382" rx="13" ry="10" fill="none" stroke="#1d4888" stroke-width="2"/>
+        <line x1="-50" y1="395" x2="-50" y2="382" stroke="#142c54" stroke-width="1.5"/>
+        <ellipse cx="50" cy="382" rx="13" ry="10" fill="none" stroke="#1d4888" stroke-width="2"/>
+        <line x1="50" y1="395" x2="50" y2="382" stroke="#142c54" stroke-width="1.5"/>
+        <rect x="-33" y="195" width="66" height="4" rx="1" fill="#1a3c6e"/>
+        <!-- Lights -->
+        <circle cx="0" cy="42" r="4" fill="#ff4444" opacity=".9" class="wl"/>
+        <circle cx="0" cy="42" r="9" fill="rgba(255,70,70,.18)" class="wl"/>
+        <circle cx="0" cy="132" r="3" fill="#ff6644" opacity=".7" class="wl"/>
+        <circle cx="0" cy="285" r="3" fill="#ff6644" opacity=".6" class="wl"/>
+        <circle cx="0" cy="482" r="3" fill="#ff6644" opacity=".5" class="wl"/>
+        <!-- Mast -->
+        <path d="M-2.5 42 L2.5 42 L1 -22 L-1 -22Z" fill="#193868"/>
+        <circle cx="0" cy="-20" r="5" fill="#FF3333" class="wl"/>
+        <circle cx="0" cy="-20" r="11" fill="rgba(255,50,50,.22)" class="wl"/>
+        <circle cx="0" cy="-20" r="18" fill="rgba(255,50,50,.07)" class="wl"/>
+        <ellipse cx="0" cy="822" rx="18" ry="5" fill="rgba(0,0,0,.28)" filter="url(#b4)"/>
+      </g>
+      <!-- Ground details -->
+      <ellipse cx="870" cy="705" rx="155" ry="42" fill="rgba(28,68,118,.18)" filter="url(#b8)"/>
+      <rect x="710" y="658" width="6" height="54" fill="rgba(13,33,62,.8)"/>
+      <rect x="724" y="670" width="4" height="42" fill="rgba(13,33,62,.6)"/>
+      <rect x="965" y="663" width="5" height="50" fill="rgba(13,33,62,.7)"/>
+      <rect x="1105" y="660" width="5" height="52" fill="rgba(13,33,62,.6)"/>
+    </svg>
+  </div>
+  <div class="hero-veil"></div>
+
+  <div class="hero-content">
+    <div class="eyebrow">
+      <div class="eyebrow-bar"></div>
+      <span class="eyebrow-txt">Fondé en 2012 · Alger · Algérie</span>
+    </div>
+    <h1 class="hero-h1">Solutions<br><em>Télécoms</em><br>Clés en Main</h1>
+    <p class="hero-p">
+      EURL CHABAKAT COM réalise et intègre des systèmes de télécommunication sur l'ensemble du territoire algérien — de la construction de pylônes au déploiement 5G, en passant par la fibre optique et les faisceaux hertziens.
+    </p>
+    <div class="hero-btns">
+      <a href="#services" class="btn btn-orange">
+        Nos Services
+        <svg viewBox="0 0 16 16" fill="none"><path d="M2.5 8H13.5M9.5 4L13.5 8L9.5 12" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="#projects" class="btn btn-outline">Voir nos Projets</a>
+    </div>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat">
+      <span class="stat-n">2012</span>
+      <span class="stat-l">Année de création</span>
+    </div>
+    <div class="stat">
+      <span class="stat-n">31+</span>
+      <span class="stat-l">Experts & Techniciens</span>
+    </div>
+    <div class="stat">
+      <span class="stat-n">10+</span>
+      <span class="stat-l">Projets réalisés</span>
+    </div>
+    <div class="stat">
+      <span class="stat-n">3</span>
+      <span class="stat-l">Opérateurs majeurs</span>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ ABOUT ════════════════ -->
+<section id="about" class="section-pad">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-frame fu">
+        <div class="about-inner">
+          <svg width="100%" height="100%" viewBox="0 0 480 360" fill="none">
+            <defs>
+              <pattern id="g2" width="30" height="30" patternUnits="userSpaceOnUse">
+                <path d="M30 0 L0 0 0 30" fill="none" stroke="rgba(26,64,120,.4)" stroke-width=".5"/>
+              </pattern>
+            </defs>
+            <rect width="480" height="360" fill="url(#g2)"/>
+            <g transform="translate(240,22)">
+              <path d="M-5 330 L-20 200 L-12 80 L0 10 L12 80 L20 200 L5 330Z" fill="rgba(26,58,107,.5)" stroke="rgba(30,74,138,.6)" stroke-width=".5"/>
+              <path d="M-20 200 L20 200" stroke="#1e4a8a" stroke-width="1"/>
+              <path d="M-15 280 L15 280" stroke="#1a3a6b" stroke-width="1"/>
+              <path d="M-12 80 L12 80" stroke="#204578" stroke-width="1"/>
+              <circle cx="0" cy="10" r="4" fill="#F05A1A"/>
+              <circle cx="0" cy="10" r="10" fill="rgba(240,90,26,.2)"/>
+            </g>
+            <path d="M175 115 Q220 95 265 115 Q305 138 345 115" stroke="rgba(240,90,26,.4)" stroke-width="1.5" fill="none"/>
+            <path d="M155 95 Q220 65 285 95 Q345 128 385 95" stroke="rgba(240,90,26,.2)" stroke-width="1" fill="none"/>
+            <circle cx="75" cy="200" r="6" fill="#1e4a8a" stroke="rgba(240,90,26,.5)" stroke-width="1.5"/>
+            <circle cx="405" cy="200" r="6" fill="#1e4a8a" stroke="rgba(240,90,26,.5)" stroke-width="1.5"/>
+            <path d="M81 200 L234 140" stroke="rgba(240,90,26,.3)" stroke-width="1" stroke-dasharray="4 3"/>
+            <path d="M399 200 L246 140" stroke="rgba(240,90,26,.3)" stroke-width="1" stroke-dasharray="4 3"/>
+            <text x="50" y="194" fill="rgba(255,255,255,.4)" font-size="8" font-family="monospace" text-anchor="middle">BTS</text>
+            <text x="430" y="194" fill="rgba(255,255,255,.4)" font-size="8" font-family="monospace" text-anchor="middle">RRU</text>
+            <rect x="0" y="352" width="480" height="2" fill="rgba(240,90,26,.6)"/>
+            <g stroke="rgba(240,90,26,.5)" stroke-width="1">
+              <line x1="18" y1="13" x2="24" y2="13"/><line x1="21" y1="10" x2="21" y2="16"/>
+              <line x1="462" y1="13" x2="456" y2="13"/><line x1="459" y1="10" x2="459" y2="16"/>
+              <line x1="18" y1="347" x2="24" y2="347"/><line x1="21" y1="344" x2="21" y2="350"/>
+              <line x1="462" y1="347" x2="456" y2="347"/><line x1="459" y1="344" x2="459" y2="350"/>
+            </g>
+          </svg>
+          <div class="corner-mark cm-tl"></div>
+          <div class="corner-mark cm-tr"></div>
+          <div class="corner-mark cm-bl"></div>
+          <div class="corner-mark cm-br"></div>
+        </div>
+        <div class="about-badge">
+          <span class="badge-n">13+</span>
+          <span class="badge-t">Ans d'Expertise</span>
+        </div>
+      </div>
+
+      <div class="about-text fu fu-d2">
+        <div class="sec-label"><div class="sec-dot"></div><span class="sec-label-txt">À Propos de Nous</span></div>
+        <h2 class="sec-h2">L'Ingénierie au Cœur de la Connectivité Algérienne</h2>
+        <p class="sec-p" style="margin-top:16px">
+          Créée en 2012 à Alger, EURL CHABAKAT COM joue un rôle essentiel dans la réalisation et l'intégration des systèmes de télécommunication en Algérie. Notre équipe d'ingénieurs et techniciens spécialisés nous permet de réaliser des projets clés en main de grande envergure.
+        </p>
+        <p class="sec-p">
+          Nos activités couvrent l'ensemble du cycle de vie d'un projet : Survey, ingénierie, fournitures, installation, mise en service, maintenance et contrôle qualité — pour les opérateurs télécom, équipementiers et collectivités algériennes.
+        </p>
+        <div class="check-list" style="margin-top:24px">
+          <div class="check-item">
+            <div class="check-box"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5L4.5 7.5L8 3" stroke="#F05A1A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            Réalisation de projets GSM clés en main
+          </div>
+          <div class="check-item">
+            <div class="check-box"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5L4.5 7.5L8 3" stroke="#F05A1A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            Logistique considérable pour respecter les délais
+          </div>
+          <div class="check-item">
+            <div class="check-box"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5L4.5 7.5L8 3" stroke="#F05A1A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            Partenariat avec grands fabricants d'équipements
+          </div>
+          <div class="check-item">
+            <div class="check-box"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5L4.5 7.5L8 3" stroke="#F05A1A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            Main-d'œuvre qualifiée · Coûts compétitifs
+          </div>
+          <div class="check-item">
+            <div class="check-box"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5L4.5 7.5L8 3" stroke="#F05A1A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            Promotion de l'emploi des jeunes Algériens
+          </div>
+        </div>
+        <a href="#contact" class="btn btn-orange" style="display:inline-flex">
+          Nous Contacter
+          <svg viewBox="0 0 16 16" fill="none"><path d="M2.5 8H13.5M9.5 4L13.5 8L9.5 12" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════════════════ SERVICES ════════════════ -->
+<section id="services" class="section-pad">
+  <div class="container">
+    <div class="services-hd fu">
+      <div>
+        <div class="sec-label"><div class="sec-dot"></div><span class="sec-label-txt">Domaines d'Intervention</span></div>
+        <h2 class="sec-h2">Nos Services</h2>
+      </div>
+      <a href="#contact" class="btn btn-outline" style="margin-top:auto">Demander un Devis</a>
+    </div>
+    <div class="services-grid fu fu-d1">
+
+      <!-- 1 -->
+      <div class="svc">
+        <span class="svc-num">01</span>
+        <svg class="svc-icon" viewBox="0 0 44 44" fill="none">
+          <path d="M22 36 L22 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M15 22 L29 22" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M11 18 L15 22" stroke="currentColor" stroke-width="1.3"/>
+          <path d="M33 18 L29 22" stroke="currentColor" stroke-width="1.3"/>
+          <path d="M7 14 L12 19" stroke="currentColor" stroke-width="1" opacity=".5"/>
+          <path d="M37 14 L32 19" stroke="currentColor" stroke-width="1" opacity=".5"/>
+          <rect x="19" y="36" width="6" height="6" fill="currentColor" opacity=".4"/>
+          <circle cx="22" cy="18" r="2.5" fill="currentColor"/>
+          <path d="M6 12 Q14 7 22 7 Q30 7 38 12" stroke="currentColor" stroke-width="1" fill="none" opacity=".22"/>
+        </svg>
+        <h3 class="svc-name">GSM & Sites Clés en Main</h3>
+        <p class="svc-desc">Réalisation complète de sites GSM de téléphonie mobile — construction terrasses et pylônes (haubanés, autostables, triangulaires et quadrangulaires).</p>
+      </div>
+
+      <!-- 2 -->
+      <div class="svc">
+        <span class="svc-num">02</span>
+        <svg class="svc-icon" viewBox="0 0 44 44" fill="none">
+          <circle cx="22" cy="22" r="14" stroke="currentColor" stroke-width="1.5" fill="none"/>
+          <circle cx="22" cy="22" r="8" stroke="currentColor" stroke-width="1.2" fill="none" opacity=".6"/>
+          <path d="M8 22 L36 22" stroke="currentColor" stroke-width="1.2" opacity=".4"/>
+          <path d="M14 14 Q22 8 30 14" stroke="currentColor" stroke-width="1.2" fill="none" opacity=".4"/>
+          <path d="M14 30 Q22 36 30 30" stroke="currentColor" stroke-width="1.2" fill="none" opacity=".4"/>
+          <circle cx="22" cy="22" r="3" fill="currentColor"/>
+        </svg>
+        <h3 class="svc-name">Swap 2G / 3G / 4G</h3>
+        <p class="svc-desc">Migration et modernisation des équipements radio — swap d'antennes, mise à niveau de génération, intégration LTE et déploiement NB-IoT.</p>
+      </div>
+
+      <!-- 3 -->
+      <div class="svc">
+        <span class="svc-num">03</span>
+        <svg class="svc-icon" viewBox="0 0 44 44" fill="none">
+          <path d="M8 34 L36 34" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M14 22 Q14 14 22 10 Q30 14 30 22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+          <rect x="18" y="22" width="8" height="12" stroke="currentColor" stroke-width="1.3" fill="none"/>
+          <path d="M10 30 L10 18 L14 14" stroke="currentColor" stroke-width="1" opacity=".4" stroke-linecap="round"/>
+          <path d="M34 30 L34 18 L30 14" stroke="currentColor" stroke-width="1" opacity=".4" stroke-linecap="round"/>
+        </svg>
+        <h3 class="svc-name">Transmission Hertzienne</h3>
+        <p class="svc-desc">Déploiement de faisceaux hertziens (microwave) — GSM, téléphonie fixe et réseau fibre optique sur le territoire national.</p>
+      </div>
+
+      <!-- 4 -->
+      <div class="svc">
+        <span class="svc-num">04</span>
+        <svg class="svc-icon" viewBox="0 0 44 44" fill="none">
+          <rect x="6" y="18" width="32" height="18" rx="1" stroke="currentColor" stroke-width="1.5" fill="none"/>
+          <path d="M14 18 L14 14 L22 10 L30 14 L30 18" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <path d="M16 36 L16 28" stroke="currentColor" stroke-width="1.2" opacity=".5" stroke-linecap="round"/>
+          <path d="M22 36 L22 28" stroke="currentColor" stroke-width="1.2" opacity=".5" stroke-linecap="round"/>
+          <path d="M28 36 L28 28" stroke="currentColor" stroke-width="1.2" opacity=".5" stroke-linecap="round"/>
+          <circle cx="34" cy="12" r="4" stroke="currentColor" stroke-width="1.2" fill="none"/>
+          <path d="M34 9 L34 8 M37.1 9.9 L37.8 9.2 M38 13 L39 13" stroke="currentColor" stroke-width="1" opacity=".5" stroke-linecap="round"/>
+        </svg>
+        <h3 class="svc-name">Énergie & Shelters</h3>
+        <p class="svc-desc">Solutions d'alimentation : énergie solaire, batteries, groupes électrogènes. Fabrication et installation de shelters et ateliers d'énergies.</p>
+      </div>
+
+      <!-- 5 -->
+      <div class="svc">
+        <span class="svc-num">05</span>
+        <svg class="svc-icon" viewBox="0 0 44 44" fill="none">
+          <path d="M8 22 L36 22" stroke="currentColor" stroke-width="1.4" opacity=".3"/>
+          <circle cx="12" cy="22" r="4" stroke="currentColor" stroke-width="1.5" fill="none"/>
+          <circle cx="22" cy="22" r="4" stroke="currentColor" stroke-width="1.5" fill="none"/>
+          <circle cx="32" cy="22" r="4" stroke="currentColor" stroke-width="1.5" fill="none"/>
+          <path d="M12 18 L12 10 L22 6 L32 10 L32 18" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity=".6"/>
+          <path d="M12 26 L12 38" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity=".5"/>
+          <path d="M22 26 L22 38" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity=".5"/>
+          <path d="M32 26 L32 38" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity=".5"/>
+        </svg>
+        <h3 class="svc-name">Fibre Optique — FTTH / ODN</h3>
+        <p class="svc-desc">Survey, étude, déploiement et canalisation de réseaux fibre optique — FTTH, FTTX et ODN — pour les opérateurs nationaux.</p>
+      </div>
+
+      <!-- 6 -->
+      <div class="svc">
+        <span class="svc-num">06</span>
+        <svg class="svc-icon" viewBox="0 0 44 44" fill="none">
+          <path d="M12 22 L18 22 L20 16 L24 28 L26 22 L32 22" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <rect x="6" y="10" width="32" height="24" rx="2" stroke="currentColor" stroke-width="1.5" fill="none"/>
+          <path d="M14 38 L30 38" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M22 34 L22 38" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <h3 class="svc-name">Survey & Études APS/APD</h3>
+        <p class="svc-desc">Acquisition de sites (recherche et négociation), réalisation de surveys de couverture, études APS/APD et ingénierie complète de déploiement.</p>
+      </div>
+
+      <!-- 7 -->
+      <div class="svc">
+        <span class="svc-num">07</span>
+        <svg class="svc-icon" viewBox="0 0 44 44" fill="none">
+          <rect x="8" y="30" width="28" height="6" stroke="currentColor" stroke-width="1.5" fill="none"/>
+          <path d="M12 30 L12 14 L22 8 L32 14 L32 30" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <path d="M10 22 L12 22" stroke="currentColor" stroke-width="1" opacity=".4" stroke-linecap="round"/>
+          <path d="M32 22 L34 22" stroke="currentColor" stroke-width="1" opacity=".4" stroke-linecap="round"/>
+          <path d="M16 30 L16 22 L22 20 L28 22 L28 30" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity=".6"/>
+        </svg>
+        <h3 class="svc-name">Génie Civil</h3>
+        <p class="svc-desc">Fondations, routes d'accès, clôtures, dalles béton, canalisations et tous travaux de génie civil pour sites de télécommunications.</p>
+      </div>
+
+      <!-- 8 -->
+      <div class="svc">
+        <span class="svc-num">08</span>
+        <svg class="svc-icon" viewBox="0 0 44 44" fill="none">
+          <path d="M10 34 Q22 8 34 34" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+          <path d="M14 28 Q22 14 30 28" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" fill="none" opacity=".6"/>
+          <path d="M18 22 Q22 16 26 22" stroke="currentColor" stroke-width="1" stroke-linecap="round" fill="none" opacity=".4"/>
+          <circle cx="22" cy="22" r="2.5" fill="currentColor"/>
+          <path d="M10 36 L34 36" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity=".4"/>
+        </svg>
+        <h3 class="svc-name">Maintenance & Assistance</h3>
+        <p class="svc-desc">Maintenance préventive et corrective, assistance technique sur site, mise en service, contrôle et optimisation des performances réseau.</p>
+      </div>
+
+      <!-- 9 -->
+      <div class="svc">
+        <span class="svc-num">09</span>
+        <svg class="svc-icon" viewBox="0 0 44 44" fill="none">
+          <path d="M22 8 L22 14 M8 22 L14 22 M30 22 L36 22 M22 30 L22 36" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity=".4"/>
+          <circle cx="22" cy="22" r="10" stroke="currentColor" stroke-width="1.5" fill="none"/>
+          <path d="M15 22 Q18 16 22 14 Q26 16 29 22 Q26 28 22 30 Q18 28 15 22Z" stroke="currentColor" stroke-width="1" fill="none" opacity=".5"/>
+          <circle cx="22" cy="22" r="3.5" fill="currentColor"/>
+          <path d="M28 16 L36 8 M36 8 L32 8 M36 8 L36 12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity=".6"/>
+        </svg>
+        <h3 class="svc-name">Acquisition de Sites</h3>
+        <p class="svc-desc">Identification, recherche et négociation foncière pour l'implantation de nouveaux sites — analyse technico-commerciale et conformité réglementaire.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════════════════ VALUES + VISION ════════════════ -->
+<section id="values" class="section-pad">
+  <div class="container">
+    <div class="sec-label fu"><div class="sec-dot"></div><span class="sec-label-txt">Notre ADN</span></div>
+    <h2 class="sec-h2 fu" style="margin-bottom:clamp(28px,4vw,48px)">Valeurs & Vision</h2>
+    <div class="vv-grid">
+      <div class="vv-card fu fu-d1">
+        <div class="vv-title">Nos Valeurs</div>
+        <div class="vv-list">
+          <div class="vv-item"><div class="vv-bullet"></div>Valorisation des compétences nationales et internationales</div>
+          <div class="vv-item"><div class="vv-bullet"></div>Travailler dans un esprit d'ouverture et d'expansion</div>
+          <div class="vv-item"><div class="vv-bullet"></div>Exécution des projets dans les règles de l'art</div>
+          <div class="vv-item"><div class="vv-bullet"></div>Garantie de la qualité des prestations et produits offerts</div>
+          <div class="vv-item"><div class="vv-bullet"></div>Promotion de l'intégration et de l'emploi des jeunes Algériens</div>
+        </div>
+      </div>
+      <div class="vv-card fu fu-d2">
+        <div class="vv-title">Notre Vision</div>
+        <div class="vv-list">
+          <div class="vv-item"><div class="vv-bullet"></div>Couvrir l'Algérie et contribuer à son développement numérique</div>
+          <div class="vv-item"><div class="vv-bullet"></div>Faciliter l'accès aux technologies nouvelles à meilleur coût</div>
+          <div class="vv-item"><div class="vv-bullet"></div>Créer un cadre d'expression des talents de la jeunesse algérienne en télécoms</div>
+          <div class="vv-item"><div class="vv-bullet"></div>Accompagner les structures étatiques dans l'acquisition d'infrastructures</div>
+          <div class="vv-item"><div class="vv-bullet"></div>Intégrer la protection de l'environnement dans nos pratiques</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════════════════ PROJECTS ════════════════ -->
+<section id="projects" class="section-pad">
+  <div class="container">
+    <div class="sec-label fu"><div class="sec-dot"></div><span class="sec-label-txt">Références</span></div>
+    <h2 class="sec-h2 fu" style="margin-bottom:clamp(24px,3.5vw,40px)">Nos Projets</h2>
+
+    <div class="proj-tabs fu">
+      <button class="proj-tab active" onclick="switchTab(this,'ongoing')">Projets en cours</button>
+      <button class="proj-tab" onclick="switchTab(this,'done')">Projets réalisés</button>
+    </div>
+
+    <!-- ONGOING -->
+    <div class="proj-panel active" id="ongoing">
+      <table class="proj-table">
+        <thead>
+          <tr><th>N°</th><th>Partenaire & Projet</th><th>Région</th><th>Période</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>01</td>
+            <td>
+              <span class="proj-partner">Algérie Télécom</span>
+              <div class="proj-name">Déploiement des sites radio, transmission et maintenance GC</div>
+            </td>
+            <td class="proj-region">Territoire national</td>
+            <td class="proj-region">2017 – 2022</td>
+          </tr>
+          <tr>
+            <td>02</td>
+            <td>
+              <span class="proj-partner">AT / Algérie Télécom</span>
+              <div class="proj-name">ODN-FTTH · F/P Pylônes</div>
+            </td>
+            <td class="proj-region">Alger · Médéa · Annaba · Tissmssilt · Souk Ahress</td>
+            <td class="proj-region">En cours</td>
+          </tr>
+          <tr>
+            <td>03</td>
+            <td>
+              <span class="proj-partner">ZTE · OTA · OA</span>
+              <div class="proj-name">AT/ATM – OTA – OA Projects</div>
+            </td>
+            <td class="proj-region">Territoire national</td>
+            <td class="proj-region">En cours</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- DONE -->
+    <div class="proj-panel" id="done">
+      <table class="proj-table">
+        <thead>
+          <tr><th>N°</th><th>Partenaire & Projet</th><th>Région</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>01</td>
+            <td>
+              <span class="proj-partner">Algérie Télécom</span>
+              <div class="proj-name">Modernisation des sites 3G – Oum El-Bouagui et Khenchela (C.W)</div>
+            </td>
+            <td class="proj-region">OEB · Khenchela</td>
+          </tr>
+          <tr>
+            <td>02</td>
+            <td>
+              <span class="proj-partner">Huawei / ATM</span>
+              <div class="proj-name">Algeria ATM 2G Swap & 3G New Civil Work AT (LTE) · FTTX Project</div>
+            </td>
+            <td class="proj-region">Relizane · Oran · Mustaganem · M'sila · Tissmssil · Alger · Tlemcen</td>
+          </tr>
+          <tr>
+            <td>03</td>
+            <td>
+              <span class="proj-partner">ZTE · Ooredoo</span>
+              <div class="proj-name">FTTx Survey & Implémentation · OTA TI Project · LTE CW+Ti+OSP · Swap Antennas & GU Ooredoo</div>
+            </td>
+            <td class="proj-region">Tiaret · Algérie · Est d'Algérie · Alger · Tipaza · Blida · Boumerdess</td>
+          </tr>
+          <tr>
+            <td>04</td>
+            <td>
+              <span class="proj-partner">ScadaCom</span>
+              <div class="proj-name">Génie Civil ATM Project</div>
+            </td>
+            <td class="proj-region">Batna · Médéa</td>
+          </tr>
+          <tr>
+            <td>05</td>
+            <td>
+              <span class="proj-partner">Alcatel-Lucent</span>
+              <div class="proj-name">MPR OTA Project</div>
+            </td>
+            <td class="proj-region">Batna</td>
+          </tr>
+          <tr>
+            <td>06</td>
+            <td>
+              <span class="proj-partner">EEC Group</span>
+              <div class="proj-name">Site Survey ATM Project</div>
+            </td>
+            <td class="proj-region">Oran · Médéa · Djelfa · OEB</td>
+          </tr>
+          <tr>
+            <td>07</td>
+            <td>
+              <span class="proj-partner">Algérie Télécom</span>
+              <div class="proj-name">F.O Project (canalisation)</div>
+            </td>
+            <td class="proj-region">Bordj Bou Arréridj</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════════════════ TEAM & RESOURCES ════════════════ -->
+<section id="team" class="section-pad">
+  <div class="container">
+    <div class="sec-label fu"><div class="sec-dot"></div><span class="sec-label-txt">Capacité Opérationnelle</span></div>
+    <h2 class="sec-h2 fu" style="margin-bottom:clamp(28px,4vw,48px)">Moyens Humains & Matériels</h2>
+    <div class="team-grid">
+      <!-- Human -->
+      <div class="res-block fu fu-d1">
+        <div class="res-title">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="color:var(--orange)"><circle cx="8" cy="5" r="3" stroke="currentColor" stroke-width="1.2"/><path d="M2 14c0-3.314 2.686-5 6-5s6 1.686 6 5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+          Ressources Humaines
+        </div>
+        <div class="res-list">
+          <div class="res-item"><span class="res-role">Cadres Dirigeants</span><span class="res-count">03</span></div>
+          <div class="res-item"><span class="res-role">Ingénieurs Génie Civil</span><span class="res-count">04</span></div>
+          <div class="res-item"><span class="res-role">Dessinateurs</span><span class="res-count">02</span></div>
+          <div class="res-item"><span class="res-role">Ingénieurs Télécom</span><span class="res-count">03</span></div>
+          <div class="res-item"><span class="res-role">Ingénieurs Électricité</span><span class="res-count">02</span></div>
+          <div class="res-item"><span class="res-role">Négociateurs</span><span class="res-count">03</span></div>
+          <div class="res-item"><span class="res-role">Techniciens & MO</span><span class="res-count">12</span></div>
+          <div class="res-item"><span class="res-role">Suivi Qualité</span><span class="res-count">02</span></div>
+        </div>
+      </div>
+      <!-- Material -->
+      <div class="res-block fu fu-d2">
+        <div class="res-title">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="color:var(--orange)"><rect x="2" y="5" width="12" height="8" rx="1" stroke="currentColor" stroke-width="1.2"/><path d="M5 5V4a3 3 0 016 0v1" stroke="currentColor" stroke-width="1.2"/></svg>
+          Moyens Matériels
+        </div>
+        <div class="res-list">
+          <div class="res-item"><span class="res-role">Camions</span><span class="res-count">04</span></div>
+          <div class="res-item"><span class="res-role">Voitures</span><span class="res-count">12</span></div>
+          <div class="res-item"><span class="res-role">PC Laptops</span><span class="res-count">06</span></div>
+          <div class="res-item"><span class="res-role">GPS & Boussoles</span><span class="res-count">04</span></div>
+          <div class="res-item"><span class="res-role">Smartphones</span><span class="res-count">10</span></div>
+          <div class="res-item"><span class="res-role">Caisses à outils complètes</span><span class="res-count">08</span></div>
+          <div class="res-item"><span class="res-role">Groupes électrogènes</span><span class="res-count">02</span></div>
+          <div class="res-item"><span class="res-role">Soudeurs FO + OTDR</span><span class="res-count">02</span></div>
+        </div>
+        <p style="font-size:12px;color:var(--w60);font-weight:300;margin-top:16px;line-height:1.65;padding:0 2px">
+          + Outillage complet : perceuses, tronçonneuses, mesureurs de terre, site master, équipements HSE, GC, électricité, peinture et montage pylône.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════════════════ CONTACT ════════════════ -->
+<section id="contact" class="section-pad">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info fu">
+        <div class="sec-label"><div class="sec-dot"></div><span class="sec-label-txt">Nous Joindre</span></div>
+        <h2 class="sec-h2">Parlons de Votre Projet</h2>
+        <p class="sec-p" style="margin-top:16px;margin-bottom:32px">
+          Notre équipe est disponible pour étudier votre projet, préparer un devis et vous accompagner de la phase de survey jusqu'à la mise en service.
+        </p>
+
+        <div class="contact-cards">
+          <div class="ccard">
+            <div class="ccard-icon">
+              <svg viewBox="0 0 18 18" fill="none"><path d="M9 2C6.239 2 4 4.239 4 7c0 4.5 5 9 5 9s5-4.5 5-9c0-2.761-2.239-5-5-5zm0 6.5a1.5 1.5 0 110-3 1.5 1.5 0 010 3z" stroke="currentColor" stroke-width="1.3"/></svg>
+            </div>
+            <div>
+              <div class="ccard-label">Adresse</div>
+              <div class="ccard-val">HAI BOUZAD ALI N°175 – Chéraga – Alger, Algérie</div>
+            </div>
+          </div>
+          <div class="ccard">
+            <div class="ccard-icon">
+              <svg viewBox="0 0 18 18" fill="none"><path d="M3 4a1 1 0 011-1h2l2 4.5-1.5 1a10 10 0 005 5l1-1.5L17 14v2a1 1 0 01-1 1C7.163 17 1 10.837 1 3a1 1 0 011-1" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+            </div>
+            <div>
+              <div class="ccard-label">Téléphone</div>
+              <div class="ccard-val">+213 (0) 23 228 228</div>
+            </div>
+          </div>
+          <div class="ccard">
+            <div class="ccard-icon">
+              <svg viewBox="0 0 18 18" fill="none"><path d="M2 4h14v11H2V4zm0 0l7 6 7-6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div>
+              <div class="ccard-label">E-mail</div>
+              <div class="ccard-val">chabakatcom@yahoo.com</div>
+            </div>
+          </div>
+          <div class="ccard">
+            <div class="ccard-icon">
+              <svg viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7" stroke="currentColor" stroke-width="1.3"/><path d="M9 4.5C7.5 6 7 7.5 7 9s.5 2.5 2 4M9 4.5c1.5 1.5 2 3 2 4.5s-.5 2.5-2 4M2.5 9h13" stroke="currentColor" stroke-width="1.1" opacity=".6"/></svg>
+            </div>
+            <div>
+              <div class="ccard-label">Site Web</div>
+              <div class="ccard-val">www.chabakatcom.com</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-persons">
+          <div class="person">
+            <div class="person-name">M. REBAI Djamel</div>
+            <div class="person-role">Directeur Général</div>
+            <div class="person-contacts">
+              <a href="mailto:r.djamel@chabakatcom.com">
+                <svg viewBox="0 0 14 14" fill="none"><path d="M1.5 3h11v8.5h-11V3zm0 0l5.5 4.5 5.5-4.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                r.djamel@chabakatcom.com
+              </a>
+              <a href="tel:+213661330733">
+                <svg viewBox="0 0 14 14" fill="none"><path d="M2 3a.8.8 0 01.8-.8h1.6l1.5 3.5-1.2.8A7.5 7.5 0 009.5 10l.8-1.2 3.5 1.5V12a.8.8 0 01-.8.8C5.4 12.8 1.2 8.6 1.2 3.8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+                +213 (0) 661 33 07 33
+              </a>
+            </div>
+          </div>
+          <div class="person">
+            <div class="person-name">M. HEBBACHE Mohamed</div>
+            <div class="person-role">Directeur Technique</div>
+            <div class="person-contacts">
+              <a href="mailto:m.hebbache@chabakatcom.com">
+                <svg viewBox="0 0 14 14" fill="none"><path d="M1.5 3h11v8.5h-11V3zm0 0l5.5 4.5 5.5-4.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                m.hebbache@chabakatcom.com
+              </a>
+              <a href="tel:+213671376360">
+                <svg viewBox="0 0 14 14" fill="none"><path d="M2 3a.8.8 0 01.8-.8h1.6l1.5 3.5-1.2.8A7.5 7.5 0 009.5 10l.8-1.2 3.5 1.5V12a.8.8 0 01-.8.8C5.4 12.8 1.2 8.6 1.2 3.8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+                +213 (0) 671 37 63 60
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <div class="fu fu-d2">
+        <div style="background:rgba(255,255,255,.03);border:1px solid var(--b06);padding:clamp(24px,3.5vw,44px)">
+          <h3 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(22px,3vw,32px);color:var(--w);letter-spacing:1px;margin-bottom:24px">Demande de Devis</h3>
+          <div class="cform">
+            <div class="cform-row">
+              <div class="cform-group">
+                <label>Nom & Prénom</label>
+                <input type="text" placeholder="Votre nom complet">
+              </div>
+              <div class="cform-group">
+                <label>Société</label>
+                <input type="text" placeholder="Nom de votre entreprise">
+              </div>
+            </div>
+            <div class="cform-row">
+              <div class="cform-group">
+                <label>Téléphone</label>
+                <input type="tel" placeholder="+213 ...">
+              </div>
+              <div class="cform-group">
+                <label>E-mail</label>
+                <input type="email" placeholder="vous@exemple.dz">
+              </div>
+            </div>
+            <div class="cform-group">
+              <label>Type de Service</label>
+              <select>
+                <option value="" disabled selected>Sélectionner un service…</option>
+                <option>GSM & Sites Clés en Main</option>
+                <option>Swap 2G / 3G / 4G</option>
+                <option>Transmission Hertzienne</option>
+                <option>Énergie & Shelters</option>
+                <option>Fibre Optique — FTTH/ODN</option>
+                <option>Survey & Études APS/APD</option>
+                <option>Génie Civil</option>
+                <option>Maintenance & Assistance</option>
+                <option>Acquisition de Sites</option>
+                <option>Autre</option>
+              </select>
+            </div>
+            <div class="cform-group">
+              <label>Wilaya / Région</label>
+              <input type="text" placeholder="Ex : Alger, Oran, M'sila…">
+            </div>
+            <div class="cform-group">
+              <label>Description du Projet</label>
+              <textarea placeholder="Décrivez votre besoin, les délais et toute information utile…"></textarea>
+            </div>
+            <button class="btn btn-orange" style="width:100%;justify-content:center;padding:15px 28px;font-size:13px" onclick="handleSubmit(event)">
+              Envoyer la Demande
+              <svg viewBox="0 0 16 16" fill="none"><path d="M2.5 8H13.5M9.5 4L13.5 8L9.5 12" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <p id="form-msg" style="display:none;text-align:center;font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:2px;color:var(--orange);margin-top:12px">MERCI — Votre demande a été envoyée !</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ FOOTER ════════════════ -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="#hero" class="nav-logo">
+        <svg width="32" height="32" viewBox="0 0 34 34" fill="none">
+          <rect width="34" height="34" fill="rgba(240,90,26,.14)"/>
+          <path d="M17 25 L17 12" stroke="#F05A1A" stroke-width="1.6" stroke-linecap="round"/>
+          <path d="M12 15 L22 15" stroke="#F05A1A" stroke-width="1.6" stroke-linecap="round"/>
+          <path d="M9.5 12.5 L13 16" stroke="rgba(240,90,26,.6)" stroke-width="1.1" stroke-linecap="round"/>
+          <path d="M24.5 12.5 L21 16" stroke="rgba(240,90,26,.6)" stroke-width="1.1" stroke-linecap="round"/>
+          <path d="M14.5 25 L19.5 25 L18.2 31 L15.8 31 Z" fill="#F05A1A" opacity=".7"/>
+          <circle cx="17" cy="12" r="2" fill="#F05A1A"/>
+        </svg>
+        <div class="logo-text">
+          <span class="logo-name">CHABAKAT COM</span>
+          <span class="logo-tagline">Télécommunications · Algérie</span>
+        </div>
+      </a>
+      <p>EURL CHABAKAT COM — Réalisation et intégration de systèmes de télécommunication en Algérie depuis 2012. HAI BOUZAD ALI N°175, Chéraga, Alger.</p>
+    </div>
+
+    <div class="footer-col">
+      <h5>Services</h5>
+      <ul>
+        <li><a href="#services">GSM Clés en Main</a></li>
+        <li><a href="#services">Swap 2G/3G/4G</a></li>
+        <li><a href="#services">Transmission Hertzienne</a></li>
+        <li><a href="#services">Fibre Optique FTTH</a></li>
+        <li><a href="#services">Génie Civil</a></li>
+        <li><a href="#services">Maintenance</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h5>Entreprise</h5>
+      <ul>
+        <li><a href="#about">À Propos</a></li>
+        <li><a href="#values">Valeurs & Vision</a></li>
+        <li><a href="#projects">Projets</a></li>
+        <li><a href="#team">Notre Équipe</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h5>Contact</h5>
+      <ul>
+        <li><a href="#">Chéraga – Alger</a></li>
+        <li><a href="tel:+213023228228">+213 (0) 23 228 228</a></li>
+        <li><a href="mailto:chabakatcom@yahoo.com">chabakatcom@yahoo.com</a></li>
+        <li><a href="#">www.chabakatcom.com</a></li>
+        <li><a href="#contact">Demander un Devis</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2025 EURL CHABAKAT COM. Tous droits réservés.</span>
+    <div class="footer-legal">
+      <a href="#">Mentions Légales</a>
+      <a href="#">Politique de Confidentialité</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ── Nav scroll ── */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 50);
+}, {passive:true});
+
+/* ── Active nav link ── */
+const sections = document.querySelectorAll('section[id]');
+const navAs = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => { if(window.scrollY >= s.offsetTop - 100) cur = s.id; });
+  navAs.forEach(a => { a.classList.toggle('active', a.getAttribute('href') === '#'+cur); });
+}, {passive:true});
+
+/* ── Hamburger ── */
+const burger = document.getElementById('burger');
+const drawer = document.getElementById('drawer');
+burger.addEventListener('click', () => {
+  const o = burger.classList.toggle('open');
+  burger.setAttribute('aria-expanded', o);
+  drawer.classList.toggle('open', o);
+  drawer.setAttribute('aria-hidden', !o);
+  document.body.style.overflow = o ? 'hidden' : '';
+});
+drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  burger.classList.remove('open');
+  drawer.classList.remove('open');
+  burger.setAttribute('aria-expanded', false);
+  drawer.setAttribute('aria-hidden', true);
+  document.body.style.overflow = '';
+}));
+document.addEventListener('click', e => {
+  if(!burger.contains(e.target) && !drawer.contains(e.target)) {
+    burger.classList.remove('open');
+    drawer.classList.remove('open');
+    burger.setAttribute('aria-expanded', false);
+    drawer.setAttribute('aria-hidden', true);
+    document.body.style.overflow = '';
+  }
+});
+
+/* ── Scroll fade-up ── */
+const fus = document.querySelectorAll('.fu');
+const io = new IntersectionObserver(es => {
+  es.forEach(e => { if(e.isIntersecting){ e.target.classList.add('vis'); io.unobserve(e.target); }});
+}, {threshold:.1});
+fus.forEach(el => io.observe(el));
+
+/* ── Project tabs ── */
+function switchTab(btn, id) {
+  document.querySelectorAll('.proj-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.proj-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+
+/* ── Warning lights blink ── */
+const wl = document.querySelectorAll('.wl');
+let b = true;
+setInterval(() => {
+  b = !b;
+  wl.forEach(l => { l.style.opacity = b ? '1' : '0.15'; });
+}, 900);
+
+/* ── Form submit ── */
+function handleSubmit(e) {
+  e.preventDefault();
+  const msg = document.getElementById('form-msg');
+  msg.style.display = 'block';
+  setTimeout(() => { msg.style.display = 'none'; }, 4000);
+}
+
+/* ── Smooth scroll for # links ── */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth'}); }
+  });
+});
+</script>
+</body>
+</html>
